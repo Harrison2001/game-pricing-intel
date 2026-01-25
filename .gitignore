@@ -17,3 +17,5 @@ venv/
 target/
 logs/
 dbt_packages/
+# data not pushed to repo
+data/*.csv
