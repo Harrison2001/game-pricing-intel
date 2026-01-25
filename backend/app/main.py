@@ -12,23 +12,19 @@ def version():
 
 from typing import Optional
 
+from typing import Optional
+import pandas as pd
+
 @app.get("/games")
 def games(max_price: Optional[float] = None, name_contains: Optional[str] = None):
-    game_list = [
-        {"id": 1, "name": "Stardew Valley", "price": 14.99},
-        {"id": 2, "name": "Hades", "price": 24.99},
-        {"id": 3, "name": "Celeste", "price": 19.99}
-    ]
+    df = pd.read_csv("data/games.csv")
 
     # Filter by price
     if max_price is not None:
-        game_list = [g for g in game_list if g["price"] <= max_price]
+        df = df[df["price"] <= max_price]
 
-    # Filter by name (case-insensitive search)
+    # Filter by name
     if name_contains is not None:
-        game_list = [
-            g for g in game_list
-            if name_contains.lower() in g["name"].lower()
-        ]
+        df = df[df["name"].str.lower().str.contains(name_contains.lower())]
 
-    return {"games": game_list}
+    return {"games": df.to_dict(orient="records")}
