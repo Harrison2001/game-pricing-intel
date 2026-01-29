@@ -1,0 +1,5 @@
+ReleaseSeason,releases_count,avg_price,median_price,min_price,max_price
+Winter,8951,55.42,51.0,10,95
+Spring,10292,56.18,51.0,10,100
+Summer,9651,55.44,51.0,10,100
+Fall,11438,54.24,50.0,10,100
